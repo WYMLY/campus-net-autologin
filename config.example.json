@@ -1,0 +1,11 @@
+{
+  "portal_host": "http://10.0.0.1",
+  "ac_id": "2",
+  "username": "",
+  "password": "",
+  "target_wifi_ssid": "",
+  "check_interval": 60,
+  "timeout": 8,
+  "n": 200,
+  "type": 1
+}
