@@ -8,7 +8,7 @@
 
 ## 直接下载就能用（不用装 Python）
 
-去 [Releases](https://github.com/WYMLY/campus-net-autologin/releases/latest) 下载 `CampusNetAutoLogin-v1.0.0.exe`（就是主程序），双击打开，填好门户地址、学号、密码，点「开始监控」即可。
+去 [Releases](https://github.com/WYMLY/campus-net-autologin/releases/latest) 下载 `CampusNetAutoLogin-v1.0.1.exe`（就是主程序），双击打开，填好门户地址、学号、密码，点「开始监控」即可。
 
 - Windows 10 / 11 64 位，单文件，不依赖 Python 环境
 - 第一次运行如果被 SmartScreen 拦一下，点「更多信息 → 仍要运行」
@@ -68,10 +68,16 @@ http://10.100.0.1/srun_portal_pc?ac_id=2&theme=basic
       └─ 门户地址 ─┘            └ ac_id ┘
 ```
 
+### `ac_id` 到底是什么
+
+认证服务器内部给「上网区域 / 设备组」编的号。学校把不同楼、不同网段、有线跟无线分开统计时，就会给不同的 `ac_id`。它不影响账号密码，填错的后果是认证被拒或者一直被踢下线。
+
+**不知道填几就填 `2`**，绝大多数学校是 2；如果不行，照浏览器地址栏 `?ac_id=` 后面那个数字抄。
+
 | 字段 | 说明 |
 | --- | --- |
 | `portal_host` | 门户地址，形如 `http://10.x.x.x`，**不带**结尾斜杠和路径 |
-| `ac_id` | 认证页 URL 里的 `ac_id` 参数，一般是 `1`、`2` 或 `3` |
+| `ac_id` | 认证区域编号，多数学校填 `2`，以认证页 URL 里的 `ac_id=` 为准 |
 | `username` | 学号 / 上网账号 |
 | `password` | 校园网认证密码 |
 | `target_wifi_ssid` | 只在连接这个 WiFi 时才认证；留空表示不限制 |

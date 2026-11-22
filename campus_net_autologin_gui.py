@@ -422,7 +422,8 @@ class App:
                                   ph="学号或上网账号")
         self.e_pass = self._field(inner, "密码", self.var_pass, row=1, col=1,
                                   show="*", ph="校园网密码", eye=True)
-        self.e_acid = self._field(inner, "ac_id", self.var_acid, row=2, col=0, ph="2")
+        self.e_acid = self._field(inner, "ac_id", self.var_acid, row=2, col=0, ph="2",
+                                  hint="登录页地址里 ?ac_id= 后面那个数字，多数学校填 2")
         self.e_interval = self._field(inner, "轮询间隔（秒）", self.var_interval, row=2, col=1,
                                       ph="60")
         self.e_ssid = self._field(inner, "校园 WiFi 名称（可留空）", self.var_ssid,
@@ -489,7 +490,7 @@ class App:
     def _field(self, parent, label, var, row, col, span=1, show="", ph="",
                hint="", eye=False):
         holder = tk.Frame(parent, bg=CARD)
-        holder.grid(row=row, column=col, columnspan=span, sticky="ew",
+        holder.grid(row=row, column=col, columnspan=span, sticky="new",
                     padx=(0, 12) if col == 0 and span == 1 else (0, 0),
                     pady=(0, 10))
         tk.Label(holder, text=label, font=F_LABEL, bg=CARD, fg=TEXT_DIM).pack(anchor="w")
