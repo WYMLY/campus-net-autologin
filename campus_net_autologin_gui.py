@@ -25,13 +25,21 @@ import tkinter as tk
 import tkinter.font as tkfont
 from tkinter import messagebox
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, "frozen", False):
+    # 打包成 exe：资源在临时解包目录，配置要落在 exe 旁边
+    APP_DIR = os.path.dirname(os.path.abspath(sys.executable))
+    BASE_DIR = getattr(sys, "_MEIPASS", APP_DIR)
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    APP_DIR = BASE_DIR
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
+if APP_DIR not in sys.path:
+    sys.path.insert(0, APP_DIR)
 
 import campus_net_autologin as core
 
-CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
+CONFIG_FILE = os.path.join(APP_DIR, "config.json")
 
 # ---------------- 配色 ----------------
 BG = "#12151c"          # 窗口底
@@ -743,9 +751,8 @@ def _dark_titlebar(root):
 
 
 def _res(name):
-    """找资源：源码跑时在同目录，pyinstaller 打包后在 _MEIPASS"""
-    base = getattr(sys, "_MEIPASS", BASE_DIR)
-    return os.path.join(base, name)
+    """找资源：源码跑时在脚本目录，pyinstaller 打包后在临时解包目录"""
+    return os.path.join(BASE_DIR, name)
 
 
 def _set_appid():

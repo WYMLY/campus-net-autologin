@@ -66,7 +66,11 @@ import urllib.request
 import urllib.parse
 import urllib.error
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, "frozen", False):
+    # 打包成 exe 后，配置和日志要跟着 exe 走，不能丢进解包出来的临时目录
+    BASE_DIR = os.path.dirname(os.path.abspath(sys.executable))
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ============ 默认配置（真正的值请放 config.json / 环境变量） ============
 DEFAULT_CONFIG = {
