@@ -8,7 +8,7 @@
 
 ## 直接下载就能用（不用装 Python）
 
-去 [Releases](https://github.com/WYMLY/campus-net-autologin/releases/latest) 下载 `校园网自动认证.exe`，双击打开，填好门户地址、学号、密码，点「开始监控」即可。
+去 [Releases](https://github.com/WYMLY/campus-net-autologin/releases/latest) 下载 `CampusNetAutoLogin-v1.0.0.exe`（就是主程序），双击打开，填好门户地址、学号、密码，点「开始监控」即可。
 
 - Windows 10 / 11 64 位，单文件，不依赖 Python 环境
 - 第一次运行如果被 SmartScreen 拦一下，点「更多信息 → 仍要运行」
