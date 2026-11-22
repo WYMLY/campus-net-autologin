@@ -1,0 +1,24 @@
+name: 支持别的学校 / 新功能
+description: 你学校用的是别的认证方式，或者想要个新功能
+title: "[建议] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        这个项目只认深澜 SRUN v4 那一套（`/cgi-bin/srun_portal`、`get_challenge`、`rad_user_info`）。
+        别的厂商（锐捷、神州数码、Dr.COM、Portal 认证）协议完全不同，得另写，不是改几行代码的事。
+
+  - type: textarea
+    id: need
+    attributes:
+      label: 你想要什么
+      placeholder: 比如「我们学校是锐捷，能支持吗」「希望能设置多个时间段自动暂停」
+    validations:
+      required: true
+
+  - type: textarea
+    id: how
+    attributes:
+      label: 你了解的线索（可选）
+      description: 如果知道学校的认证方式，或者能抓到登录页的请求，贴在这里会很有帮助（别贴密码）

@@ -165,6 +165,12 @@ pyinstaller -F -w --name 校园网自动认证 --icon app.ico --add-data "app.ic
 - 学校换了认证系统（比如上了验证码、换成别的厂商）就会失效，失效就提 issue，或者自己改 `build_*` 那几个函数。
 - 用之前确认一下学校是否禁止第三方客户端自动认证，有些学校会查。出事自己担。
 
+## 用上了？
+
+- 点个 **Star** 就是对它最大的鼓励，也能让更多被校园网折磨的同学搜到
+- 你学校也是深澜、但这个版本跑不通：开个 [issue](https://github.com/WYMLY/campus-net-autologin/issues/new/choose)，把门户地址和日志贴上来（**记得打码学号密码**）
+- 别的厂商（锐捷 / 神州数码 / Dr.COM）：协议完全不一样，issue 里说说你学校用的哪套，能收集到资料就另开项目
+
 ## License
 
 MIT，见 [LICENSE](LICENSE)。

@@ -1,0 +1,46 @@
+name: 用不了 / 报错
+description: 登录失败、一直重连、界面打不开之类的问题
+title: "[问题] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        填得越细，越快能看出问题在哪。**注意：别把学号和密码贴进来**，日志里出现的话自己打码。
+
+  - type: input
+    id: school
+    attributes:
+      label: 哪个学校 / 门户地址长什么样
+      description: 门户地址只需要写域名形式，比如 `http://10.100.0.1/srun_portal_pc?ac_id=2`
+      placeholder: 学校名 + 门户地址
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: 用的是哪个版本
+      options:
+        - 下载的 exe（Releases 里那个）
+        - 源码跑 GUI（python campus_net_autologin_gui.py）
+        - 命令行版（python campus_net_autologin.py）
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 界面里的运行日志
+      description: 把「运行日志」框里最后十几行复制过来，学号密码记得打码
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 现象
+      description: 点了开始监控之后发生了什么？认证成功但马上掉线？还是压根没反应？
+    validations:
+      required: true

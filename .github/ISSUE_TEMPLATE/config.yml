@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 先看 README 的排错表
+    url: https://github.com/WYMLY/campus-net-autologin#%E6%8E%92%E9%94%99
+    about: 「一直重连不上」「密码明明是对的」这类问题，README 里基本都写了
