@@ -748,8 +748,18 @@ def _res(name):
     return os.path.join(base, name)
 
 
+def _set_appid():
+    """给进程一个自己的 AppUserModelID，任务栏才不会把窗口算成 python.exe 的"""
+    try:
+        import ctypes
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
+            u"Wa1em.CampusNetAutologin")
+    except Exception:
+        pass
+
+
 def _set_icon(root):
-    """窗口/任务栏图标：ico 给 Windows 标题栏，png 给 iconphoto 兜底"""
+    """窗口/任务栏图标：ico 给标题栏和任务栏，png 给 iconphoto 兜底"""
     ico = _res("app.ico")
     png = _res("app.png")
     try:
@@ -762,10 +772,28 @@ def _set_icon(root):
             root.iconphoto(True, tk.PhotoImage(file=png))
     except Exception:
         pass
+    # tk 有时候只设了小图标，任务栏那个大图标得自己塞一次
+    if os.name == "nt" and os.path.exists(ico):
+        try:
+            import ctypes
+            from ctypes import wintypes
+            root.update_idletasks()
+            hwnd = ctypes.windll.user32.GetParent(root.winfo_id())
+            IMAGE_ICON, LR_LOADFROMFILE, LR_DEFAULTSIZE = 1, 0x10, 0x40
+            WM_SETICON, ICON_BIG, ICON_SMALL = 0x0080, 1, 0
+            for size, which in ((32, ICON_BIG), (16, ICON_SMALL), (32, ICON_SMALL)):
+                himg = ctypes.windll.user32.LoadImageW(
+                    None, ico, IMAGE_ICON, size, size, LR_LOADFROMFILE)
+                if himg:
+                    ctypes.windll.user32.SendMessageW(
+                        wintypes.HWND(hwnd), WM_SETICON, which, wintypes.LPARAM(himg))
+        except Exception:
+            pass
 
 
 def main():
     _enable_dpi_awareness()
+    _set_appid()
     root = tk.Tk()
     _set_icon(root)
     App(root)
